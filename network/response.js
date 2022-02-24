@@ -10,8 +10,8 @@ exports.success=function(req,res,body,status,header){
     )
 }
 exports.error=function(req,res,error,status, details){
-    let date =new Date()
-    console.error(`[error ${date.getTimezoneOffset()}] ${details}`);
+    let date =formData(new Date())
+    console.error(`${date} ${details}`);
 
     res
     .status(status||500)
@@ -21,4 +21,7 @@ exports.error=function(req,res,error,status, details){
          body:""
         }
     )
+}
+function formData(date){
+    return `${date.getDay()}:${date.getFullYear()}:${date.getMonth()}-${date.getHours()}:${date.getMinutes()}`
 }
