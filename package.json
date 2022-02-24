@@ -1,0 +1,16 @@
+{
+  "name": "chat-with-sockets",
+  "version": "1.0.0",
+  "description": "backend of chat using sockets",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "author": "sergio figueroa",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15"
+  }
+}
