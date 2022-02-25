@@ -10,8 +10,7 @@ function addMessage(user,message){
                 message:message,
                 date:new Date()
             }
-            store.add(fullMessage)
-            resolve(fullMessage)
+            resolve(store.add(fullMessage))
         }
     })
 }

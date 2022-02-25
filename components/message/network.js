@@ -8,7 +8,7 @@ router.get("/", (req,res)=>{
     let filterUser= req.query.user||null
     controller.getMessages(filterUser)
     .then(messages=>response.success(req,res,messages,200))
-    .catch(error=> response.error(req,res,"Error", 400, "[error get messageControlle]"+ error))
+    .catch(error=> response.error(req,res,"Unexpected error", 400, "[error get messageControlle]"+ error))
     
     
 })
