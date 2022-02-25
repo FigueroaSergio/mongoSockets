@@ -5,15 +5,16 @@ const controller = require("./controller")
 const router = express.Router()
 
 router.get("/", (req,res)=>{
-    let filterUser= req.query.user||null
-    controller.getMessages(filterUser)
+    let filterChat= req.query.chat||null
+    controller.getMessages(filterChat)
     .then(messages=>response.success(req,res,messages,200))
     .catch(error=> response.error(req,res,"Unexpected error", 400, "[error get messageControlle]"+ error))
     
     
 })
 router.post("/", (req,res)=>{
-    controller.addMessage(req.body.user, req.body.message)
+    let {chat,user,message}=req.body
+    controller.addMessage(chat,user,message)
     .then(message=>{
         response.success(req,res,"Create success",200,)}
     )

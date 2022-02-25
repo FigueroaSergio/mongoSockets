@@ -1,6 +1,11 @@
 const mongoose= require("mongoose")
 const Schema = mongoose.Schema
 const mySchema = new Schema({
+    chat:{
+        type:Schema.ObjectId,
+        ref:"chat",
+        required:true
+    },
     user:{ 
         type:Schema.ObjectId,
         ref:"user",
@@ -16,5 +21,5 @@ const mySchema = new Schema({
     }
 })
 
-const model = mongoose.model("menssage", mySchema)
+const model = mongoose.model("message", mySchema)
 module.exports= model

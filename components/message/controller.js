@@ -1,11 +1,12 @@
 const store = require("./store")
 
-function addMessage(user,message){
+function addMessage(chat,user,message){
     return new Promise((resolve,reject)=>{
         if(!user||!message){
             reject("[error post messageController] Error incomplete data")
         }else{
             let fullMessage={
+                chat:chat,
                 user:user,
                 message:message,
                 date:new Date()
@@ -14,10 +15,9 @@ function addMessage(user,message){
         }
     })
 }
-function getMessages(filterUser){
-    return new Promise((resolve,reject)=>{
-        resolve(store.list(filterUser))
-    })
+function getMessages(filterChat){
+    return store.list(filterChat)
+
 }
 function updateMessage(id, message){
     return new Promise((resolve,reject)=>{
