@@ -1,9 +1,9 @@
 require('dotenv').config()
 const express = require("express")
 const path = require("path")
-
-//const indexRouter= require("./components/message/network")
 const route=require("./network/routes")
+const db = require("./db")
+db(process.env.MONGOURL)
 var app = express()
 
 app.use(express.static(path.join(__dirname, 'public')))

@@ -1,17 +1,27 @@
-const db = require("mongoose")
 const Model = require ("./model")
-db.connect(process.env.MONGOURL,{useNewUrlParser:true})
-console.log("[db]Connect successfully");
 
-async function getMessages(){
-    return await Model.find()
-}
 function addMessage(message){
     const myMessage= new Model(message);
     myMessage.save()
 }
+async function updateMessage(id,message){
+    return await Model.findByIdAndUpdate(id,{message:message},{new:true})
 
+}
+async function getMessages(filterUser){
+    let filter = { }
+    if( filterUser!=null){
+        filter={user:filterUser}
+    }
+    return await Model.find(filter)
+}
+async function deleteMessage(id){
+    return await Model.findByIdAndDelete(id)
+}
 module.exports={
     add:addMessage,
     list:getMessages,
+    updateMessage:updateMessage,
+    deleteMessage:deleteMessage
+
 }
