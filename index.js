@@ -6,10 +6,10 @@ const db = require("./db")
 db(process.env.MONGOURL)
 var app = express()
 
-app.use(express.static(path.join(__dirname, 'public')))
+
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
-
+app.use("/app",express.static(path.join(__dirname, 'public')))
 route(app)
  
 app.listen(3000)

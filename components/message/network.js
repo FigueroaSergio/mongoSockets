@@ -1,8 +1,13 @@
 const express = require("express")
+const multer = require("multer")
 const response = require("../../network/response")
 const controller = require("./controller")
 
 const router = express.Router()
+
+const upload = multer({
+    dest:"public/files",//donde queremos que se guarden los archivos
+})
 
 router.get("/", (req,res)=>{
     let filterChat= req.query.chat||null
@@ -12,9 +17,9 @@ router.get("/", (req,res)=>{
     
     
 })
-router.post("/", (req,res)=>{
+router.post("/", upload.single("file"),(req,res)=>{
     let {chat,user,message}=req.body
-    controller.addMessage(chat,user,message)
+    controller.addMessage(chat,user,message,req.file)
     .then(message=>{
         response.success(req,res,"Create success",200,)}
     )
